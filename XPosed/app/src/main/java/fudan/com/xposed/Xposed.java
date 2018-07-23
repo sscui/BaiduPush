@@ -60,6 +60,16 @@ public class Xposed implements IXposedHookLoadPackage {
                     XposedBridge.log(TAG + "\n\n\n\n\n\n");
                 }
             });
+
+//            com.baidu.android.pushservice.h
+            XposedHelpers.findAndHookMethod("com.baidu.android.pushservice.h.u", lpparam.classLoader, "r", Context.class, String.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    XposedBridge.log(TAG + " into mbaby u r()...");
+                    boolean u_r = (boolean)param.getResult();
+                    XposedBridge.log(TAG + " result should be FFFFFFFFFFFFFFFFFFFFFFFFF and real is " + u_r);
+                }
+            });
         }
 
         if (package_name_kdmfxs.equals(lpparam.packageName)) {
